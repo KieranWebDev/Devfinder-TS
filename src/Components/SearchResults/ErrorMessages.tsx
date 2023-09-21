@@ -31,8 +31,8 @@ export default function ErrorMessages({
       {!apiLimitExceeded && !validUsername && searchQuery !== '' && (
         <div className="invalid-user-message">
           <h1>
-            Sorry, we can't find any results for this username. Please check the
-            spelling and try again.
+            Sorry, we can't find any results for the username "{searchQuery}".
+            Please check the spelling and try again.
           </h1>
         </div>
       )}

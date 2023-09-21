@@ -26,18 +26,20 @@ export default function SearchBar({
   }
 
   return (
-    <div className="search-bar-container">
-      <form className="form-container">
-        <img src={searchicon} alt="searchicon" />
-        <input
-          type="text"
-          placeholder="Search GitHub username..."
-          onChange={handleChange}
-        />
+    <>
+      <div className="search-bar-container">
+        <form className="form-container">
+          <img src={searchicon} alt="searchicon" />
+          <input
+            type="text"
+            placeholder="Search GitHub username..."
+            onChange={handleChange}
+          />
 
-        {!validUsername && <span className="no-results">No Results</span>}
-        <button onClick={(e) => handleSubmit(e)}>Search</button>
-      </form>
-    </div>
+          <button onClick={(e) => handleSubmit(e)}>Search</button>
+        </form>
+      </div>
+      {!validUsername && <p className="no-results">No Results</p>}
+    </>
   );
 }
