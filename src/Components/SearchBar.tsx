@@ -1,15 +1,25 @@
-import React from 'react';
 import { useState } from 'react';
 
 // styles
 import './SearchBar.css';
 import searchicon from '../images/icon-search.svg';
 
-export default function SearchBar({ setSearchQuery, validUsername }) {
+interface SearchBarProps {
+  setSearchQuery: (searchQuery: string) => void;
+  validUsername: boolean;
+}
+
+export default function SearchBar({
+  setSearchQuery,
+  validUsername,
+}: SearchBarProps) {
   const [tempVal, setTempVal] = useState('');
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setTempVal(e.target.value);
+  }
+
+  function handleSubmit() {
     setSearchQuery(tempVal);
   }
 
@@ -20,7 +30,7 @@ export default function SearchBar({ setSearchQuery, validUsername }) {
         <input
           type="text"
           placeholder="Search GitHub username..."
-          onChange={(e) => setTempVal(e.target.value)}
+          onChange={handleChange}
         />
 
         {!validUsername && <span className="no-results">No Results</span>}

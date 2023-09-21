@@ -6,7 +6,7 @@ import moonIcon from '../images/icon-moon.svg';
 
 interface NavBarProps {
   theme: string;
-  setTheme: (theme: string) => string;
+  setTheme: (theme: string) => void;
 }
 
 export default function NavBar({ theme, setTheme }: NavBarProps) {
