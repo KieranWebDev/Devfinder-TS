@@ -1,20 +1,21 @@
 interface ErrorMessagesProps {
   validUsername: boolean;
   searchQuery: string;
-  error: Error | null;
+  error: string | null;
 }
-interface Error {
-  message: string;
-  [key: string]: unknown;
-}
+// interface Error {
+//   message: string;
+//   [key: string]: unknown;
+// }
 
 export default function ErrorMessages({
   validUsername,
   searchQuery,
   error,
 }: ErrorMessagesProps) {
+  console.log(error);
   const apiLimitExceeded =
-    error !== null && error.message.startsWith('API rate limit exceeded')
+    error !== null && error.startsWith('API rate limit exceeded')
       ? true
       : false;
   return (

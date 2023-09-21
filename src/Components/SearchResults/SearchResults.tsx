@@ -1,4 +1,3 @@
-import React from 'react';
 // images
 import locationImg from '../../images/icon-location.svg';
 import companyImg from '../../images/icon-company.svg';
@@ -6,8 +5,25 @@ import blogImg from '../../images/icon-website.svg';
 import twitterImg from '../../images/icon-twitter.svg';
 // styles
 import './SearchResults.css';
+// Types
+import { userData } from '../../App';
 
-export default function SearchResults({ userData }) {
+export default function SearchResults({
+  userData,
+}: {
+  userData: userData | null;
+}) {
+  if (!userData) {
+    return (
+      <div className="invalid-user-message">
+        <h1>
+          Sorry, we can't find any results for this username. Please check the
+          spelling and try again.
+        </h1>
+      </div>
+    );
+  }
+
   const {
     name,
     avatar_url,

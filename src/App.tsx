@@ -9,11 +9,28 @@ import SearchBar from './Components/SearchBar';
 import ErrorMessages from './Components/SearchResults/ErrorMessages';
 import SearchResults from './Components/SearchResults/SearchResults';
 
+export interface userData {
+  name: string;
+  avatar_url: string;
+  html_url: string;
+  login: string;
+  created_at: string;
+  bio: string;
+  public_repos: number;
+  followers: number;
+  following: number;
+  location: string;
+  blog: string;
+  twitter_username: string;
+  company: string;
+  [key: string]: unknown;
+}
+
 function App() {
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState<userData | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('octocat');
   const [validUsername, setValidUsername] = useState<boolean>(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   // dark mode
   const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;

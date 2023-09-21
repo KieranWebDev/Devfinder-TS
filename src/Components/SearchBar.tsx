@@ -17,9 +17,11 @@ export default function SearchBar({
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setTempVal(e.target.value);
+    console.log(tempVal);
   }
 
-  function handleSubmit() {
+  function handleSubmit(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
     setSearchQuery(tempVal);
   }
 
@@ -34,7 +36,7 @@ export default function SearchBar({
         />
 
         {!validUsername && <span className="no-results">No Results</span>}
-        <button onClick={handleSubmit}>Search</button>
+        <button onClick={(e) => handleSubmit(e)}>Search</button>
       </form>
     </div>
   );
