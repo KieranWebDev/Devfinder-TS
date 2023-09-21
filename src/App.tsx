@@ -13,7 +13,7 @@ function App() {
   const [userData, setUserData] = useState({});
   const [searchQuery, setSearchQuery] = useState<string>('octocat');
   const [validUsername, setValidUsername] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState<boolean>(false);
   // dark mode
   const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -25,7 +25,6 @@ function App() {
   useEffect(() => {
     async function fetchData() {
       try {
-        setError(false);
         setLoading(true);
         setValidUsername(true);
         const response = await fetch(
@@ -43,17 +42,10 @@ function App() {
           setError(data.message);
           console.log(error);
         }
-      } catch (error) {
-        if (
-          typeof error === 'object' &&
-          error &&
-          'message' in error &&
-          typeof error.message === 'string'
-        ) {
-          // message gets narrowed to string!
-          setError(true);
+      } catch (err) {
+        if (typeof error === 'object') {
+          setError(error);
         }
-
         // console.log(error);
       }
     }

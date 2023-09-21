@@ -1,8 +1,22 @@
-import React from 'react';
+interface ErrorMessagesProps {
+  validUsername: boolean;
+  searchQuery: string;
+  error: Error | null;
+}
+interface Error {
+  message: string;
+  [key: string]: unknown;
+}
 
-export default function ErrorMessages({ validUsername, searchQuery, error }) {
+export default function ErrorMessages({
+  validUsername,
+  searchQuery,
+  error,
+}: ErrorMessagesProps) {
   const apiLimitExceeded =
-    error !== null ? error.startsWith('API rate limit exceeded') : false;
+    error !== null && error.message.startsWith('API rate limit exceeded')
+      ? true
+      : false;
   return (
     <>
       {apiLimitExceeded && (
